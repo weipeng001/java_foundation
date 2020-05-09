@@ -11,6 +11,8 @@
     <modules>
         <module>dozer-mapper</module>
         <module>guava-test</module>
+        <module>java8-function</module>
+        <module>java8-date</module>
     </modules>
     <build>
         <plugins>
