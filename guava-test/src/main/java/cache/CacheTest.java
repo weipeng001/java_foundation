@@ -1,10 +1,6 @@
 package cache;
 
-/**
- * @Author: zhuoli
- * @Date: 2018/7/13 10:09
- * @Description:
- */
+
 public class CacheTest {
     public static void main(String[] args) {
         Dao dao = new Dao();

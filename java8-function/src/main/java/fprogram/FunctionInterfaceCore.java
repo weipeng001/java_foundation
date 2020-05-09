@@ -1,7 +1,7 @@
 package fprogram;
 
 /**
- * @Author: zhuoli
+
  * @Date: 2018/6/11 21:09
  * @Description:
  */
@@ -11,7 +11,7 @@ public class FunctionInterfaceCore<T> {
      * @desc: 函数式接口作为方法的参数
      * @param: [ele1, ele2, functionInterfaceDemo]
      * @return: T
-     * @author: zhuoli
+
      * @date: 2018/6/11 21:32
      */
     public T methodUseFunctionInterface(T ele1, T ele2, FunctionInterfaceDemo<T> functionInterfaceDemo) {

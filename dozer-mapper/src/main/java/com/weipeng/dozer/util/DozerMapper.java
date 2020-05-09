@@ -3,11 +3,7 @@ package com.weipeng.dozer.util;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 
-/**
- * @author: liaozhicheng
- * @date: 2019-03-06
- * @since: 1.0
- */
+
 public class DozerMapper {
 
     private static class DozerMapperHolder {

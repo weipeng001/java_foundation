@@ -13,6 +13,7 @@
         <module>guava-test</module>
         <module>java8-function</module>
         <module>java8-date</module>
+        <module>lombok-test</module>
     </modules>
     <build>
         <plugins>

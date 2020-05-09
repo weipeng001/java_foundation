@@ -5,11 +5,7 @@ import lombok.ToString;
 
 import java.util.Date;
 
-/**
- * @Author: zhuoli
- * @Date: 2018/9/30 16:22
- * @Description:
- */
+
 @Data
 @ToString
 public class UserVO {
