@@ -7,7 +7,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-
+/**
+ * Map排序
+ */
 public class SortByKeyExample {
     @Test
     public void SortByKeyTest() {
