@@ -1,7 +1,7 @@
 package dozer.demo;
 
 import dozer.dao.UserDO;
-import dozer.util.wewe;
+import dozer.util.UserConvert;
 import dozer.vo.UserVO;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +28,7 @@ public class TransformDemo {
 
     @Test
     public void transformInCommonWay(){
-        UserVO userVO = wewe.INSTANCE.h2(userDO);
+        UserVO userVO = UserConvert.INSTANCE.h2(userDO);
         System.out.println();
     }
 }

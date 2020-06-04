@@ -9,9 +9,9 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 @Mapper
-public interface wewe {
+public interface UserConvert {
 
-    wewe INSTANCE = Mappers.getMapper(wewe.class);
+    UserConvert INSTANCE = Mappers.getMapper(UserConvert.class);
 
     @Mappings({})
     UserVO h2(UserDO broker);
