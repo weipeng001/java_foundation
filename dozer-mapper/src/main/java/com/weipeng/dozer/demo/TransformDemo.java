@@ -1,62 +1,61 @@
 package com.weipeng.dozer.demo;
 
-import com.weipeng.dozer.dao.UserDO;
+import com.weipeng.dozer.dao.TargetDemo;
+import com.weipeng.dozer.dao.User;
 import com.weipeng.dozer.util.BeanUtils;
-import com.weipeng.dozer.vo.UserVO;
-import com.weipeng.dozer.vo.UserVO2;
+import com.weipeng.dozer.vo.UserDto;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Optional;
+import java.util.List;
 
+/**
+ * 转换类测试
+ *
+ * @author wuweipeng
+ * @date 2020/9/19
+ */
 public class TransformDemo {
-    private UserDO userDO = new UserDO();
+
+    private User user = new User();
+
+    private List<User> userList = new ArrayList<>();
 
     @Before
-    public void init(){
-        userDO.setId(1);
-        userDO.setAge(18);
-        userDO.setName("weipeng");
-        userDO.setAddress("shenzhen");
-        userDO.setBirthday(Date.from(LocalDate.of(2000, 1, 1).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
-        userDO.setGender("male");
-        userDO.setNickName("吴伟鹏");
-        userDO.setPassword("123456");
-        userDO.setIsDeleted(0);
+    public void init() {
+
+        user.setId(1);
+        user.setName("weipeng");
+        user.setBirthday(new Date());
+
+        TargetDemo targetDemo = new TargetDemo();
+        targetDemo.setId("targetId");
+        targetDemo.setName("targetName");
+        user.setTarget(targetDemo);
+
+        for (int i = 0; i < 10; i++) {
+            User user = new User();
+            user.setId(i);
+            user.setName("weipeng");
+            user.setBirthday(new Date());
+            user.setTarget(targetDemo);
+            userList.add(user);
+        }
     }
 
-    @Test
-    public void transformInCommonWay(){
-        UserVO userVO = new UserVO();
-        userVO.setId(userDO.getId());
-        userVO.setAge(userDO.getAge());
-        userVO.setName(userDO.getName());
-        userVO.setAddress(userDO.getAddress());
-        userVO.setBirthday(userDO.getBirthday());
-        userVO.setGender(userDO.getGender());
-        userVO.setNickName(userDO.getNickName());
-        userVO.setClickCount(99);
 
+    @Test
+    public void copy() {
+        UserDto userVO = BeanUtils.copy(user, UserDto.class);
         System.out.println(userVO);
     }
 
     @Test
-    public void transformInDozerWay(){
-        UserVO userVO =  BeanUtils.copy(userDO, UserVO.class);
-        userVO.setClickCount(99);
+    public void copyList() {
+        List<UserDto> userVO = BeanUtils.copyList(userList, UserDto.class);
         System.out.println(userVO);
     }
 
-    @Test
-    public void transformInDozerWay2(){
-//        UserVO2 userVO =  BeanUtils.copy(userDO, UserVO2.class);
-//        userVO.setClickCount(99);
-//        System.out.println(userVO);
-        UserVO2 userVO =null;
-        String personId = Optional.ofNullable(userVO).map(p->p.getAa().getAddress()).orElse(null);
-        System.out.println();
-    }
 }
