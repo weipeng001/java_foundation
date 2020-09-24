@@ -10,11 +10,6 @@ import java.util.Date;
 @ToString
 public class UserVO {
     private Integer id;
-    private String name;
-    private Integer age;
-    private String gender;
-    private String address;
-    private String nickName;
     private Date birthday;
-    private Integer clickCount;
+    private String test;
 }

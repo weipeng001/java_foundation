@@ -9,12 +9,6 @@ import java.util.Date;
 @ToString
 public class UserDO {
     private Integer id;
-    private String name;
-    private Integer age;
-    private String gender;
-    private String address;
-    private String password;
-    private String nickName;
     private Date birthday;
-    private Integer isDeleted;
+    private String specialName;
 }

@@ -6,8 +6,6 @@ import dozer.vo.UserVO;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 
 public class TransformDemo {
@@ -16,19 +14,17 @@ public class TransformDemo {
     @Before
     public void init(){
         userDO.setId(1);
-        userDO.setAge(18);
-        userDO.setName("weipeng");
-        userDO.setAddress("shenzhen");
-        userDO.setBirthday(Date.from(LocalDate.of(2000, 1, 1).atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
-        userDO.setGender("male");
-        userDO.setNickName("吴伟鹏");
-        userDO.setPassword("123456");
-        userDO.setIsDeleted(0);
+        userDO.setBirthday(new Date());
+        userDO.setSpecialName("伟鹏");
     }
 
+    /**
+     * 如果工具类 启动异常 需要 使用maven clean install
+     * maven clean install  之后 mapper会自动帮你生成一个转换类
+     */
     @Test
     public void transformInCommonWay(){
-        UserVO userVO = UserConvert.INSTANCE.h2(userDO);
+        UserVO userVO = UserConvert.INSTANCE.transformation(userDO);
         System.out.println();
     }
 }
