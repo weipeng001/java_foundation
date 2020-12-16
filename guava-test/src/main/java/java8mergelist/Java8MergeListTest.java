@@ -31,6 +31,8 @@ public class Java8MergeListTest {
         aClassList2.add(new AClass(5, "zhuoli5", "haha5"));
         aClassList2.add(new AClass(6, "zhuoli6", "haha6"));
 
+        List<Integer> aClassList2Ids = aClassList2.stream().map(AClass::getId).collect(Collectors.toList());
+
         /*交集*/
         /*[AClass(id=1, name=zhuoli1, description=haha1)]*/
         List<AClass> intersectResult = aClassList1.stream().filter(aClassList2::contains).collect(Collectors.toList());
@@ -58,26 +60,17 @@ public class Java8MergeListTest {
 
     @Test
     public void intersectByKeyTest() {
+        Data2 data2 = new Data2(10501, "JOE", "Type1");
+        Data1 data1 = new Data1(10501, "JOE", 3000000);
+        data2.setData1(data1);
+        data1.setData2(data2);
         List<Data2> listOfData2 = new ArrayList<Data2>();
-
-        listOfData2.add(new Data2(10501, "JOE", "Type1"));
-        listOfData2.add(new Data2(10603, "SAL", "Type5"));
-        listOfData2.add(new Data2(40514, "PETER", "Type4"));
-        listOfData2.add(new Data2(59562, "JIM", "Type2"));
-        listOfData2.add(new Data2(29415, "BOB", "Type1"));
-        listOfData2.add(new Data2(61812, "JOE", "Type9"));
-        listOfData2.add(new Data2(98432, "JOE", "Type7"));
-        listOfData2.add(new Data2(62556, "JEFF", "Type1"));
-        listOfData2.add(new Data2(10599, "TOM", "Type4"));
+        listOfData2.add(data2);
 
 
         List<Data1> listOfData1 = new ArrayList<Data1>();
 
-        listOfData1.add(new Data1(10501, "JOE", 3000000));
-        listOfData1.add(new Data1(10603, "SAL", 6225000));
-        listOfData1.add(new Data1(40514, "PETER", 2005000));
-        listOfData1.add(new Data1(59562, "JIM", 3000000));
-        listOfData1.add(new Data1(29415, "BOB", 3000000));
+        listOfData1.add(data1);
 
         List<OutputData> result = listOfData1.stream()
                 .flatMap(x -> listOfData2.stream()
@@ -87,7 +80,7 @@ public class Java8MergeListTest {
         System.out.println(result);
 
         /*difference by key*/
-        List<Data1> data1IntersectResult = listOfData1.stream().filter(data1 -> listOfData2.stream().map(Data2::getId).collect(Collectors.toList()).contains(data1.getId())).collect(Collectors.toList());
+        List<Data1> data1IntersectResult = listOfData1.stream().filter(key -> listOfData2.stream().map(Data2::getId).collect(Collectors.toList()).contains(key.getId())).collect(Collectors.toList());
         System.out.println(data1IntersectResult);
     }
 
