@@ -16,6 +16,7 @@
         <module>lombok-test</module>
         <module>mapstruct-mapper</module>
         <module>java-utils</module>
+        <module>java-source-code</module>
     </modules>
     <build>
         <plugins>
