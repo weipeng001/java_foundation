@@ -3,7 +3,7 @@ package com.weipeng.dozer.dao;
 import lombok.Data;
 
 @Data
-public  class TargetDemo {
+public  class Target {
 
     private String id;
 

@@ -1,4 +1,4 @@
-package com.weipeng.dozer.vo;
+package com.weipeng.dozer.dto;
 
 import lombok.Data;
 import lombok.ToString;

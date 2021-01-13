@@ -16,7 +16,7 @@ public class User {
 
     private Date birthday;
 
-    private TargetDemo target;
+    private Target target;
 
 
 }
