@@ -10,15 +10,4 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>design-patterns</artifactId>
-
-    <!--
-            创建型模式 :creationmode
-
-            结构型模式 :structuralmodel
-
-            行为型模式 :behavioralmodel
-
-      -->
-    <dependencies>
-    </dependencies>
 </project>
