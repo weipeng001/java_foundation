@@ -5,9 +5,7 @@
         * [**guava-test**](guava-test)
     * java对象拷贝（已完成）:
         * [**dozer-mapper**（推荐）](dozer-mapper)
-            * [**具体实现**](dozer-mapper\src\test\java\TransformTest.java)
         * [**mapstruct-mapper**](mapstruct-mapper)
-            * [**具体实现**](mapstruct-mapper\src\test\java\TransformTest.java)
     * jdk源码（待完成）:
         * [**java-source-code**](java-source-code)
             * [**jdk8**](java-source-code\java-8)
