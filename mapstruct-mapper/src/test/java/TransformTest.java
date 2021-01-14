@@ -1,5 +1,3 @@
-package dozer.demo;
-
 import dozer.dao.UserDO;
 import dozer.util.UserConvert;
 import dozer.vo.UserVO;
@@ -8,7 +6,13 @@ import org.junit.Test;
 
 import java.util.Date;
 
-public class TransformDemo {
+/**
+ *
+ * @author wuweipeng
+ * @date 2021/1/14
+ * @Description  转换测试类
+ */
+public class TransformTest {
     private UserDO userDO = new UserDO();
 
     @Before
@@ -20,10 +24,10 @@ public class TransformDemo {
 
     /**
      * 如果工具类 启动异常 需要 使用maven clean install
-     * maven clean install  之后 mapper会自动帮你生成一个转换类
+     * maven clean install  之后 mapper会自动帮你生成一个接口实现类
      */
     @Test
-    public void transformInCommonWay(){
+    public void copy(){
         UserVO userVO = UserConvert.INSTANCE.transformation(userDO);
         System.out.println();
     }

@@ -1,4 +1,4 @@
-package dozer.util;
+package dozer.util.test;
 
 import dozer.dao.UserDO;
 

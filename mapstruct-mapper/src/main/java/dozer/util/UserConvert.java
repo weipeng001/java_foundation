@@ -19,7 +19,7 @@ public interface UserConvert {
      * source ：UserDO的属性
      * target ：UserVO的属性
      * 如果 source 和 target 属性名称一致 可忽略不写
-     * expression :需要特殊处理的 可以使用工具类 如果ConvertUtil不是在当前包下 需要指定全路径类名 如 dozer.util.ConvertUtil
+     * expression :需要特殊处理的 可以使用工具类 如果ConvertUtil不是在当前包下 需要指定全路径类名 如 dozer.util.test.ConvertUtil
      *
      * @param user
      * @return
@@ -27,7 +27,7 @@ public interface UserConvert {
     @Mappings({
             @Mapping(source = "birthday", target = "birthday", dateFormat = "yyyy-MM-dd"),
             @Mapping(source = "id", target = "id"),
-            @Mapping(target = "test", expression = "java(ConvertUtil.specialMethod(user))")
+            @Mapping(target = "test", expression = "java(dozer.util.test.ConvertUtil.specialMethod(user))")
 
     })
     UserVO transformation(UserDO user);
