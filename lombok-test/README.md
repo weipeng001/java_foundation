@@ -13,7 +13,7 @@ Lombok注解
 * @Data：注解在类上，将类提供的所有属性都添加get、set方法，并添加、equals、canEquals、hashCode、toString方法
 * @Setter：注解在类上，为所有属性添加set方法、注解在属性上为该属性提供set方法
 * @Getter：注解在类上，为所有的属性添加get方法、注解在属性上为该属性提供get方法
-* @NotNull：在参数中使用时，如果调用时传了null值，就会抛出空指针异常
+* @NonNull：在参数中使用时，如果调用时传了null值，就会抛出空指针异常
 * @Synchronized 用于方法，可以锁定指定的对象，如果不指定，则默认创建一个对象锁定
 * @Log作用于类，创建一个log属性
 * @Builder：使用builder模式创建对象
