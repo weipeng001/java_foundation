@@ -7,6 +7,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * classPath 文件处理
+ *
+ * @author wuweipeng
+ * @date 2021/7/2
+ */
 public class ClassPathResource implements Resource {
 
     private final String path;
@@ -23,9 +29,16 @@ public class ClassPathResource implements Resource {
         this.classLoader = (classLoader != null ? classLoader : ClassUtils.getDefaultClassLoader());
     }
 
+    /**
+     * 这一部分的实现是用于通过 ClassLoader 读取 ClassPath 下的文件信息，
+     * 具体的读取过程主要是：classLoader.getResourceAsStream(path)
+     *
+     * @return
+     * @throws IOException
+     */
     @Override
     public InputStream getInputStream() throws IOException {
-        InputStream is = classLoader.getResourceAsStream(path);
+        InputStream is = this.classLoader.getResourceAsStream(this.path);
         if (is == null) {
             throw new FileNotFoundException(
                     this.path + " cannot be opened because it does not exist");
