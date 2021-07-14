@@ -4,12 +4,12 @@ import cn.bugstack.springframework.core.io.DefaultResourceLoader;
 import cn.bugstack.springframework.core.io.ResourceLoader;
 
 /**
- * Abstract base class for bean definition readers which implement
- * the {@link BeanDefinitionReader} interface.
- * <p>
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
+ * 抽象类把 BeanDefinitionReader 接口的前两个方法全部实现完了，
+ * 并提供了构造函数，让外部的调用使用方，把Bean定义注入类，传递进来。
+ * 以前我们是通过单元测试使用，调用 BeanDefinitionRegistry 完成Bean的注册，现在可以放到 XMl 中操作了
+ *
+ * @author wuweipeng
+ * @date 2021/7/5
  */
 public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader {
 
@@ -28,12 +28,12 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 
     @Override
     public BeanDefinitionRegistry getRegistry() {
-        return registry;
+        return this.registry;
     }
 
     @Override
     public ResourceLoader getResourceLoader() {
-        return resourceLoader;
+        return this.resourceLoader;
     }
 
 }

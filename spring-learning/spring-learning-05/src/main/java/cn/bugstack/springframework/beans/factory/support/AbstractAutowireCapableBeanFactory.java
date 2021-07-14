@@ -7,15 +7,10 @@ import cn.bugstack.springframework.beans.factory.config.BeanDefinition;
 import cn.bugstack.springframework.beans.factory.config.BeanReference;
 import cn.hutool.core.bean.BeanUtil;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 /**
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
+
  */
 public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory {
 
@@ -25,14 +20,14 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     protected Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansException {
         Object bean = null;
         try {
-            bean = createBeanInstance(beanDefinition, beanName, args);
+            bean = this.createBeanInstance(beanDefinition, beanName, args);
             // 给 Bean 填充属性
-            applyPropertyValues(beanName, bean, beanDefinition);
+            this.applyPropertyValues(beanName, bean, beanDefinition);
         } catch (Exception e) {
             throw new BeansException("Instantiation of bean failed", e);
         }
 
-        addSingleton(beanName, bean);
+        this.addSingleton(beanName, bean);
         return bean;
     }
 
@@ -46,7 +41,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
                 break;
             }
         }
-        return getInstantiationStrategy().instantiate(beanDefinition, beanName, constructorToUse, args);
+        return this.getInstantiationStrategy().instantiate(beanDefinition, beanName, constructorToUse, args);
     }
 
     /**
@@ -63,7 +58,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
                 if (value instanceof BeanReference) {
                     // A 依赖 B，获取 B 的实例化
                     BeanReference beanReference = (BeanReference) value;
-                    value = getBean(beanReference.getBeanName());
+                    value = this.getBean(beanReference.getBeanName());
                 }
                 // 属性填充
                 BeanUtil.setFieldValue(bean, name, value);
@@ -74,7 +69,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     }
 
     public InstantiationStrategy getInstantiationStrategy() {
-        return instantiationStrategy;
+        return this.instantiationStrategy;
     }
 
     public void setInstantiationStrategy(InstantiationStrategy instantiationStrategy) {

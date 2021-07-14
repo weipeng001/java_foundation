@@ -1,12 +1,14 @@
 package cn.bugstack.springframework.beans;
 
+import lombok.Getter;
+
 /**
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
- *
  * bean 属性信息
+ *
+ * @author wuweipeng
+ * @date 2021/6/29
  */
+@Getter
 public class PropertyValue {
 
     private final String name;
@@ -17,13 +19,4 @@ public class PropertyValue {
         this.name = name;
         this.value = value;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public Object getValue() {
-        return value;
-    }
-
 }

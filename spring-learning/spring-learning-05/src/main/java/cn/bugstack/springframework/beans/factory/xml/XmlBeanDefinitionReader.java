@@ -18,11 +18,10 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Bean definition reader for XML bean definitions.
+ * xml配置文件读取
  *
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
+ * @author wuweipeng
+ * @date 2021/7/6
  */
 public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
@@ -38,7 +37,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
     public void loadBeanDefinitions(Resource resource) throws BeansException {
         try {
             try (InputStream inputStream = resource.getInputStream()) {
-                doLoadBeanDefinitions(inputStream);
+                this.doLoadBeanDefinitions(inputStream);
             }
         } catch (IOException | ClassNotFoundException e) {
             throw new BeansException("IOException parsing XML document from " + resource, e);
@@ -48,15 +47,15 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
     @Override
     public void loadBeanDefinitions(Resource... resources) throws BeansException {
         for (Resource resource : resources) {
-            loadBeanDefinitions(resource);
+            this.loadBeanDefinitions(resource);
         }
     }
 
     @Override
     public void loadBeanDefinitions(String location) throws BeansException {
-        ResourceLoader resourceLoader = getResourceLoader();
+        ResourceLoader resourceLoader = this.getResourceLoader();
         Resource resource = resourceLoader.getResource(location);
-        loadBeanDefinitions(resource);
+        this.loadBeanDefinitions(resource);
     }
 
     protected void doLoadBeanDefinitions(InputStream inputStream) throws ClassNotFoundException {
@@ -66,10 +65,14 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
         for (int i = 0; i < childNodes.getLength(); i++) {
             // 判断元素
-            if (!(childNodes.item(i) instanceof Element)) continue;
+            if (!(childNodes.item(i) instanceof Element)) {
+                continue;
+            }
             // 判断对象
-            if (!"bean".equals(childNodes.item(i).getNodeName())) continue;
-            
+            if (!"bean".equals(childNodes.item(i).getNodeName())) {
+                continue;
+            }
+
             // 解析标签
             Element bean = (Element) childNodes.item(i);
             String id = bean.getAttribute("id");
@@ -87,8 +90,12 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
             BeanDefinition beanDefinition = new BeanDefinition(clazz);
             // 读取属性并填充
             for (int j = 0; j < bean.getChildNodes().getLength(); j++) {
-                if (!(bean.getChildNodes().item(j) instanceof Element)) continue;
-                if (!"property".equals(bean.getChildNodes().item(j).getNodeName())) continue;
+                if (!(bean.getChildNodes().item(j) instanceof Element)) {
+                    continue;
+                }
+                if (!"property".equals(bean.getChildNodes().item(j).getNodeName())) {
+                    continue;
+                }
                 // 解析标签：property
                 Element property = (Element) bean.getChildNodes().item(j);
                 String attrName = property.getAttribute("name");
@@ -100,11 +107,11 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
                 PropertyValue propertyValue = new PropertyValue(attrName, value);
                 beanDefinition.getPropertyValues().addPropertyValue(propertyValue);
             }
-            if (getRegistry().containsBeanDefinition(beanName)) {
+            if (this.getRegistry().containsBeanDefinition(beanName)) {
                 throw new BeansException("Duplicate beanName[" + beanName + "] is not allowed");
             }
             // 注册 BeanDefinition
-            getRegistry().registerBeanDefinition(beanName, beanDefinition);
+            this.getRegistry().registerBeanDefinition(beanName, beanDefinition);
         }
     }
 

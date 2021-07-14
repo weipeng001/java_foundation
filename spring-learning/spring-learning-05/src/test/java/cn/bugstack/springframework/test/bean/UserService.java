@@ -1,9 +1,7 @@
 package cn.bugstack.springframework.test.bean;
 
 /**
- * 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
- * 公众号：bugstack虫洞栈
- * Create by 小傅哥(fustack)
+
  */
 public class UserService {
 
@@ -12,11 +10,11 @@ public class UserService {
     private UserDao userDao;
 
     public String queryUserInfo() {
-        return userDao.queryUserName(uId);
+        return this.userDao.queryUserName(this.uId);
     }
 
     public String getuId() {
-        return uId;
+        return this.uId;
     }
 
     public void setuId(String uId) {
@@ -24,7 +22,7 @@ public class UserService {
     }
 
     public UserDao getUserDao() {
-        return userDao;
+        return this.userDao;
     }
 
     public void setUserDao(UserDao userDao) {
