@@ -9,7 +9,6 @@ import cn.bugstack.springframework.beans.BeansException;
  * @date 2021/6/29
  */
 public interface BeanFactory {
-
     /**
      * 提供 Bean 的获取方法 getBean(String name)，
      * 之后这个 Bean 工厂接口由抽象类 AbstractBeanFactory 实现。

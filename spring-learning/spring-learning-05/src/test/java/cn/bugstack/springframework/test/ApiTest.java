@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
-
+ *
  */
 public class ApiTest {
 
@@ -70,7 +70,7 @@ public class ApiTest {
 
     @Test
     public void test_url() throws IOException {
-        Resource resource = this.resourceLoader.getResource("https://github.com/fuzhengwei/small-spring/important.properties");
+        Resource resource = this.resourceLoader.getResource("https://gitee.com/small-spring/small-spring-step-05/blob/main/src/test/resources/important.properties");
         InputStream inputStream = resource.getInputStream();
         String content = IoUtil.readUtf8(inputStream);
         System.out.println(content);

@@ -70,7 +70,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
                 Object value = propertyValue.getValue();
 
                 if (value instanceof BeanReference) {
-                    // A 依赖 B，获取 B 的实例化
+                    // A 依赖 B，获取 B 的实例化  当前不考虑循环依赖
                     BeanReference beanReference = (BeanReference) value;
                     value = this.getBean(beanReference.getBeanName());
                 }

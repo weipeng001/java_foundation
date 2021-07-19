@@ -3,6 +3,8 @@ package cn.bugstack.springframework.beans.factory.config;
 import cn.bugstack.springframework.beans.PropertyValues;
 import lombok.Data;
 
+import java.util.Optional;
+
 /**
  * Bean的定义信息
  *
@@ -26,7 +28,7 @@ public class BeanDefinition {
 
     public BeanDefinition(Class beanClass, PropertyValues propertyValues) {
         this.beanClass = beanClass;
-        this.propertyValues = propertyValues != null ? propertyValues : new PropertyValues();
+        this.propertyValues = Optional.ofNullable(propertyValues).orElse(new PropertyValues());
     }
 
 }
