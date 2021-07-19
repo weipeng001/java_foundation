@@ -15,15 +15,15 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 
     private DefaultListableBeanFactory beanFactory;
 
-    @Override
-    protected void refreshBeanFactory() throws BeansException {
-        DefaultListableBeanFactory beanFactory = this.createBeanFactory();
-        this.loadBeanDefinitions(beanFactory);
-        this.beanFactory = beanFactory;
+    private static DefaultListableBeanFactory createBeanFactory() {
+        return new DefaultListableBeanFactory();
     }
 
-    private DefaultListableBeanFactory createBeanFactory() {
-        return new DefaultListableBeanFactory();
+    @Override
+    protected void refreshBeanFactory() throws BeansException {
+        DefaultListableBeanFactory beanFactory = AbstractRefreshableApplicationContext.createBeanFactory();
+        this.loadBeanDefinitions(beanFactory);
+        this.beanFactory = beanFactory;
     }
 
     protected abstract void loadBeanDefinitions(DefaultListableBeanFactory beanFactory);

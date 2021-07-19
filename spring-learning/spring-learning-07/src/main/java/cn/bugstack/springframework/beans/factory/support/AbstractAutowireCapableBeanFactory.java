@@ -25,6 +25,23 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
     private InstantiationStrategy instantiationStrategy = new CglibSubclassingInstantiationStrategy();
 
+    private static void invokeInitMethods(String beanName, Object bean, BeanDefinition beanDefinition) throws Exception {
+        // 1. 实现接口 InitializingBean
+        if (bean instanceof InitializingBean) {
+            ((InitializingBean) bean).afterPropertiesSet();
+        }
+
+        // 2. 注解配置 init-method {判断是为了避免二次执行销毁}
+        String initMethodName = beanDefinition.getInitMethodName();
+        if (StrUtil.isNotEmpty(initMethodName)) {
+            Method initMethod = beanDefinition.getBeanClass().getMethod(initMethodName);
+            if (null == initMethod) {
+                throw new BeansException("Could not find an init method named '" + initMethodName + "' on bean with name '" + beanName + "'");
+            }
+            initMethod.invoke(bean);
+        }
+    }
+
     @Override
     protected Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansException {
         Object bean = null;
@@ -102,7 +119,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
         // 执行 Bean 对象的初始化方法
         try {
-            this.invokeInitMethods(beanName, wrappedBean, beanDefinition);
+            AbstractAutowireCapableBeanFactory.invokeInitMethods(beanName, wrappedBean, beanDefinition);
         } catch (Exception e) {
             throw new BeansException("Invocation of init method of bean[" + beanName + "] failed", e);
         }
@@ -110,23 +127,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         // 2. 执行 BeanPostProcessor After 处理
         wrappedBean = this.applyBeanPostProcessorsAfterInitialization(bean, beanName);
         return wrappedBean;
-    }
-
-    private void invokeInitMethods(String beanName, Object bean, BeanDefinition beanDefinition) throws Exception {
-        // 1. 实现接口 InitializingBean
-        if (bean instanceof InitializingBean) {
-            ((InitializingBean) bean).afterPropertiesSet();
-        }
-
-        // 2. 注解配置 init-method {判断是为了避免二次执行销毁}
-        String initMethodName = beanDefinition.getInitMethodName();
-        if (StrUtil.isNotEmpty(initMethodName)) {
-            Method initMethod = beanDefinition.getBeanClass().getMethod(initMethodName);
-            if (null == initMethod) {
-                throw new BeansException("Could not find an init method named '" + initMethodName + "' on bean with name '" + beanName + "'");
-            }
-            initMethod.invoke(bean);
-        }
     }
 
     @Override
