@@ -11,8 +11,9 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class SimpleInstantiationStrategy implements InstantiationStrategy {
 
+
     @Override
-    public static Object instantiate(BeanDefinition beanDefinition, String beanName, Constructor ctor, Object[] args) throws BeansException {
+    public Object instantiate(BeanDefinition beanDefinition, String beanName, Constructor ctor, Object[] args) throws BeansException {
         Class clazz = beanDefinition.getBeanClass();
         try {
             if (null != ctor) {
@@ -24,5 +25,4 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
             throw new BeansException("Failed to instantiate [" + clazz.getName() + "]", e);
         }
     }
-
 }
