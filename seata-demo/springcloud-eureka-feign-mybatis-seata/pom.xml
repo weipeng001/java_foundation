@@ -23,7 +23,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		<mysql-connector-java.version>5.1.37</mysql-connector-java.version>
+		<mysql-connector-java.version>8.0.28</mysql-connector-java.version>
 <!--
         TODO 根据你本地mysql的版本进行设置
 		<mysql-connector-java.version>8.0.16</mysql-connector-java.version>
